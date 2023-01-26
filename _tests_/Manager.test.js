@@ -3,11 +3,11 @@ const Manager = require("../lib/Manager");
 describe("Manager class", () => {
   describe("initialization", () => {
     it("should create an object if provided valid arguments", () => {
-      const testManager = new Manager("Fayven", 30, "fam@me.me", "umd");
+      const testManager = new Manager("Fayven", 30, "fam@me.me", "1");
       expect(testManager.name).toEqual("Fayven");
       expect(testManager.id).toEqual(30);
       expect(testManager.email).toEqual("fam@me.me");
-      expect(testManager.school).toEqual("umd");
+      expect(testManager.officeNumber).toEqual("1");
     });
 
 
@@ -43,11 +43,11 @@ describe("Can identify email error", () => {
       });
 })
 
-describe("Can identify school error", () => {
-    it("should throw an error if 'school' is not a string", () => {
-        const cb = () => new Manager("Fayven", 30, "fam@me.me", 2023);
+describe("Can identify office number error", () => {
+    it("should throw an error if 'office number' is not a string", () => {
+        const cb = () => new Manager("Fayven", 30, "fam@me.me", "1");
         const err = new Error(
-          "Expect parameter 'school' to be a non-empty string"
+          "Expect parameter 'office number' to be a non-empty string"
         );
   
         expect(cb).toThrowError(err);
@@ -75,12 +75,12 @@ describe("Can identify school error", () => {
       expect(testManager.getEmail()).toBe("fam@me.com");
     });
   });
-  describe("Can get school via getSchool", () => {
-            it("returns Manager's school", () => {
-                const testManager = new Manager("Fayven", 30, "fam@me.me", "umd");
-                expect(testManager.getSchool()).toBe("umd");
-            });
-        });
+//   describe("Can get school via getSchool", () => {
+//             it("returns Manager's school", () => {
+//                 const testManager = new Manager("Fayven", 30, "fam@me.me", "umd");
+//                 expect(testManager.getSchool()).toBe("umd");
+//             });
+//         });
     
         describe("Can get role via getRole", () => {
             it("returns Manager's role", () => {
