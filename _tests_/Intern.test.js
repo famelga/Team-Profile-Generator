@@ -3,11 +3,11 @@ const Intern = require("../lib/Intern");
 describe("Intern class", () => {
   describe("initialization", () => {
     it("should create an object if provided valid arguments", () => {
-      const testIntern = new Intern("Fayven", 30, "fam@me.me", "famelga");
+      const testIntern = new Intern("Fayven", 30, "fam@me.me", "famelga", "umd");
       expect(testIntern.name).toEqual("Fayven");
       expect(testIntern.id).toEqual(30);
       expect(testIntern.email).toEqual("fam@me.me");
-      expect(testIntern.github).toEqual("famelga");
+      expect(testIntern.school).toEqual("umd");
     });
 
 
@@ -43,11 +43,11 @@ describe("Can identify email error", () => {
       });
 })
 
-describe("Can identify github error", () => {
-    it("should throw an error if 'github' is not a string", () => {
+describe("Can identify school error", () => {
+    it("should throw an error if 'school' is not a string", () => {
         const cb = () => new Intern("Fayven", 30, "fam@me.me", 2023);
         const err = new Error(
-          "Expect parameter 'github' to be a non-empty string"
+          "Expect parameter 'school' to be a non-empty string"
         );
   
         expect(cb).toThrowError(err);
@@ -75,10 +75,10 @@ describe("Can identify github error", () => {
       expect(testIntern.getEmail()).toBe("fam@me.com");
     });
   });
-  describe("Can get github via getGithub", () => {
-            it("returns Intern's github", () => {
-                const testIntern = new Intern("Fayven", 30, "fam@me.me", "famelga");
-                expect(testIntern.getGithub()).toBe("famelga");
+  describe("Can get school via getSchool", () => {
+            it("returns Intern's school", () => {
+                const testIntern = new Intern("Fayven", 30, "fam@me.me", "umd");
+                expect(testIntern.getSchool()).toBe("umd");
             });
         });
     
