@@ -44,10 +44,10 @@ describe("Can identify email error", () => {
 })
 
 describe("Can identify office number error", () => {
-    it("should throw an error if 'office number' is not a string", () => {
+    it("should throw an error if 'id' is not a number", () => {
         const cb = () => new Manager("Fayven", 30, "fam@me.com", "1");
         const err = new Error(
-          "Expect parameter 'office number' to be a non-empty string"
+            "Expect parameter 'office number' to be a non-negative number"
         );
   
         expect(cb).toThrowError(err);
@@ -75,16 +75,18 @@ describe("Can identify office number error", () => {
       expect(testManager.getEmail()).toBe("fam@me.com");
     });
   });
-//   describe("Can get school via getSchool", () => {
-//             it("returns Manager's school", () => {
-//                 const testManager = new Manager("Fayven", 30, "fam@me.com", "1" "umd");
-//                 expect(testManager.getSchool()).toBe("umd");
-//             });
-//         });
+  describe("Can get office number via getOfficeNumber", () => {
+
+    it("returns Manager's office number", () => {
+      const testManager = new Manager("Fayven", 30, "fam@me.com", 1);
+      expect(testManager.getOfficeNumber()).toBe(1);
+    });
+  });
+
     
         describe("Can get role via getRole", () => {
             it("returns Manager's role", () => {
-                const testManager= new Manager("Fayven", 30, "fam@me.com", "1" "umd");
+                const testManager= new Manager("Fayven", 30, "fam@me.com", 1);
                 expect(testManager.getRole()).toBe("Manager");
             });
   });
