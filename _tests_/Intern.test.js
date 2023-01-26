@@ -3,7 +3,7 @@ const Intern = require("../lib/Intern");
 describe("Intern class", () => {
   describe("initialization", () => {
     it("should create an object if provided valid arguments", () => {
-      const testIntern = new Intern("Fayven", 30, "fam@me.me", "famelga", "umd");
+      const testIntern = new Intern("Fayven", 30, "fam@me.me", "umd");
       expect(testIntern.name).toEqual("Fayven");
       expect(testIntern.id).toEqual(30);
       expect(testIntern.email).toEqual("fam@me.me");
@@ -57,21 +57,21 @@ describe("Can identify school error", () => {
   describe("Can get name via getName", () => {
     
     it("returns Intern's name", () => {
-      const testIntern = new Intern("Fayven", 30, "fam@me.me", "famelga");
+      const testIntern = new Intern("Fayven", 30, "fam@me.me", "umd");
       expect(testIntern.getName()).toBe("Fayven");
     });
   });
   
   describe("Can get id via getId", () => {
     it("returns Intern's id", () => {
-      const testIntern = new Intern("Fayven", 30, "fam@me.me", "famelga");
+      const testIntern = new Intern("Fayven", 30, "fam@me.me", "umd");
       expect(testIntern.getId()).toBe(30);
     });
   });
   describe("Can get email via getEmail", () => {
 
     it("returns Intern's email", () => {
-      const testIntern = new Intern("Fayven", 30, "fam@me.com", "famelga");
+      const testIntern = new Intern("Fayven", 30, "fam@me.com", "umd");
       expect(testIntern.getEmail()).toBe("fam@me.com");
     });
   });
@@ -84,7 +84,7 @@ describe("Can identify school error", () => {
     
         describe("Can get role via getRole", () => {
             it("returns Intern's role", () => {
-                const testIntern= new Intern("Fayven", 30, "fam@me.me", "famelga");
+                const testIntern= new Intern("Fayven", 30, "fam@me.me", "umd");
                 expect(testIntern.getRole()).toBe("Intern");
             });
   });
