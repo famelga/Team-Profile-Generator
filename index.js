@@ -113,7 +113,8 @@ function employeeCard(){
     };
 
     var cards = allEmployees.reduce((acc, employee) => { 
-        return acc.concat(generateTeammate);
+        
+        return acc.concat(generateTeammate(employee));
     });
 
     managerCard();
@@ -135,7 +136,7 @@ var index = `<!DOCTYPE html>
         <body>
             <header class="column has-background-primary p-4 has-text-centered">My Team</header>
             <main class="container">
-               ${}
+               ${cards}
             </main>
         </body>
         
