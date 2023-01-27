@@ -4,7 +4,6 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Employee = require("./lib/Employee");
-const { number } = require("yargs");
 
 
 // const intern = new Intern();
@@ -55,7 +54,7 @@ function employeeCard(){
             type: 'list',
             name: 'role',
             message: 'What role would you like to add?', 
-            choices: ['Intern', 'Engineer', 'Done'],
+            choices: ['Intern', 'Engineer'],
             // validate ,
         },
         {
@@ -64,6 +63,7 @@ function employeeCard(){
             // validate: ,
         },
         {
+            type: 'number',
             name: 'id',
             message: 'Please enter employee id.', 
             // validate ,
@@ -76,12 +76,20 @@ function employeeCard(){
         {
             name: 'school',
             message: 'Please enter employee school name.', 
-            // validate ,
+            when: (response) => response.role === "Intern",
         },
         {
             name: 'github',
             message: 'Please enter employee github username.', 
+            when: (response) => response.role === "Engineer",
             // validate ,
+        },
+        {
+            type: 'confirm',
+            name: 'add',
+            message: 'Would you like to add another employee?', 
+
+            // validate:  ,
         },
         // {
         //     name: ,
@@ -90,8 +98,24 @@ function employeeCard(){
         // },
     ])
     .then((response) => {
+
+                // for (i = 0; i <response.length; i++) {
+            allEmployees.push(response);
+        // }
+
+        if(response.add === true) {
+            // allEmployees.push(response);
+            employeeCard();
+        };
+
+
+
+        // const engineer = new Engineer(response.role, response.name, response.id, response.email, response.office);
+        // const intern = new Intern(response.role, response.name, response.id, response.email, response.office);
+
+        // console.log(engineer);
+        // console.log(intern);
         console.log(response);
-    
 
     });
     };
