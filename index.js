@@ -22,10 +22,9 @@ const Employee = require("./lib/Employee");
 inquirer
 .prompt([
     {
-        type: 'list',
+        type: 'confirm',
         name: 'role',
-        message: 'What is your role?' , 
-        choices: ['Intern', 'Engineer', 'Manager'],
+        message: 'Are you the manager' , 
         // validate ,
     },
     {
@@ -45,7 +44,39 @@ inquirer
     },
     {
         name: 'school',
-        message: 'Please enter your school name.', 
+        message: 'Please enter your office number.', 
+        // validate ,
+    },
+    {
+        type: 'list',
+        name: 'role',
+        message: 'What role would you like to add?' , 
+        choices: ['Intern', 'Engineer'],
+        // validate ,
+    },
+    {
+        name: 'name',
+        message: 'Please enter employee full name.', 
+        // validate: ,
+    },
+    {
+        name: 'id',
+        message: 'Please enter employee id.', 
+        // validate ,
+    },
+    {
+        name: 'email',
+        message: 'Please enter employee email address.', 
+        // validate ,
+    },
+    {
+        name: 'school',
+        message: 'Please enter employee school name.', 
+        // validate ,
+    },
+    {
+        name: 'school',
+        message: 'Please enter employee github username.', 
         // validate ,
     },
     // {
@@ -54,6 +85,14 @@ inquirer
     //     validate ,
     // },
 ])
+.then((response) => {
+    console.log(response);
+
+    fs.writeFile('index.html', index, (err) => {
+        if (err) throw err;
+        console.log(index)
+    })
+})
 
 
 
