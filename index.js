@@ -10,7 +10,7 @@ const template = require("./src/page-template");
 // const intern = new Intern();
 // const engineer = new Engineer();
 
-
+var cards = "";
 const allEmployees = [];
 // console.log(allEmployees);
 
@@ -102,25 +102,59 @@ function employeeCard(){
 
         if(response.add === true) {
             employeeCard();
-        };
-
-        myTeam();
+        } else {
+            getCards();
+            myTeam();
+        }
+        
 
 
         console.log(allEmployees);
 
     });
-    };
+};
 
-    var cards = allEmployees.reduce((acc, employee) => { 
-        
-        return acc.concat(generateTeammate(employee));
-    });
 
+  
     managerCard();
 
+    function getCards() {
+    cards = allEmployees.reduce((acc, employee) => { 
+    //    var card = generateTeammate(employee);
+    //     return acc.concat(card);
+    return acc += generateTeammate(employee)
+    }, ``);
+    }
+
+
+function generateTeammate(employee) {
+    var div = "";
+    if(employee.getRole() === "Manager"){
+        div = `<div class="card-content" id="office-number">${employee.office}</div>`
+    }
+    if(employee.getRole() === "Engineer"){
+        div = `<div class="card-content" id="github"><a href="https://github.com/${employee.github}" target="_blank">${employee.github}</a></div>`
+    }
+    if(employee.getRole() === "Intern"){
+        div = `<div class="card-content" id="school">${employee.school}</div>`
+    }
+
+
+    return `              <div class="card">
+    <div class="card-header">
+    <div class="card-header-title is-center ">${employee.name}</div>
+    <div class="card-header-title is-center">${employee.getRole()}</div>
+</div>
+    <div class="card-content" id="id">${employee.id}</div>
+    <div class="card-content" id="email"><a href="mailto:${employee.email}">${employee.email}</div>    
+    ${div}    
+    </div>
+</div>`
+};
 
 function myTeam() {
+
+
 
 var index = `<!DOCTYPE html>
         <html lang="en">
@@ -148,7 +182,6 @@ var index = `<!DOCTYPE html>
         })
     
 }
-
 
 
 
