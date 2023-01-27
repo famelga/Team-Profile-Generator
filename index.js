@@ -7,12 +7,10 @@ const Employee = require("./lib/Employee");
 const template = require("./src/page-template");
 
 
-// const intern = new Intern();
-// const engineer = new Engineer();
+
 
 var cards = "";
 const allEmployees = [];
-// console.log(allEmployees);
 
 function managerCard() {
 inquirer
@@ -45,8 +43,7 @@ inquirer
 .then((response) => {
     allEmployees.push(new Manager (response.name, response.id, response.email, response.office));
 
-    // const manager = new Manager (response.name, response.id, response.email, response.office);
-    // console.log(manager);
+
     employeeCard();
 });
 };
@@ -120,8 +117,7 @@ function employeeCard(){
 
     function getCards() {
     cards = allEmployees.reduce((acc, employee) => { 
-    //    var card = generateTeammate(employee);
-    //     return acc.concat(card);
+  
     return acc += generateTeammate(employee)
     }, ``);
     }
@@ -182,20 +178,3 @@ var index = `<!DOCTYPE html>
         })
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// // // const path = require("path");
-
-// const dist_dir = path.resolve(__dirname, "dist");
-// const dist_path = path.join(dist_dir, "team.html");
-// const render = require("./src/page-template");
