@@ -4,35 +4,26 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Employee = require("./lib/Employee");
+const { number } = require("yargs");
 
-// const intern1 = new Intern("Liya", 35, "lam@me.me", "umd");
-// const engineer1 = new Engineer("Maki", 33, "mam@me.me", "mmaak");
-// const manager1 = new Manager("Helen", 32, "ham@me.me", "3");
 
 // const intern = new Intern();
 // const engineer = new Engineer();
-// const manager = new Manager();
 
-// console.log(intern1);
-// const allEmployees = [];
-// infoIntern()
 
-// ask each employee questions
+const allEmployees = [];
+// console.log(allEmployees);
 
+function managerCard() {
 inquirer
 .prompt([
-    {
-        type: 'confirm',
-        name: 'role',
-        message: 'Are you the manager' , 
-        // validate ,
-    },
     {
         name: 'name',
         message: 'Please enter your full name.', 
         // validate: ,
     },
     {
+        type: 'number',
         name: 'id',
         message: 'Please enter your id.', 
         // validate ,
@@ -43,56 +34,136 @@ inquirer
         // validate ,
     },
     {
-        name: 'school',
+        type: 'number',
+        name: 'office',
         message: 'Please enter your office number.', 
         // validate ,
     },
-    {
-        type: 'list',
-        name: 'role',
-        message: 'What role would you like to add?' , 
-        choices: ['Intern', 'Engineer'],
-        // validate ,
-    },
-    {
-        name: 'name',
-        message: 'Please enter employee full name.', 
-        // validate: ,
-    },
-    {
-        name: 'id',
-        message: 'Please enter employee id.', 
-        // validate ,
-    },
-    {
-        name: 'email',
-        message: 'Please enter employee email address.', 
-        // validate ,
-    },
-    {
-        name: 'school',
-        message: 'Please enter employee school name.', 
-        // validate ,
-    },
-    {
-        name: 'school',
-        message: 'Please enter employee github username.', 
-        // validate ,
-    },
-    // {
-    //     name: ,
-    //     message , 
-    //     validate ,
-    // },
 ])
 .then((response) => {
-    console.log(response);
 
-    fs.writeFile('index.html', index, (err) => {
-        if (err) throw err;
-        console.log(index)
-    })
-})
+    const manager = new Manager(response.name, response.id, response.email, response.office);
+    console.log(manager);
+    employeeCard();
+});
+};
+
+function employeeCard(){
+    inquirer
+    .prompt([
+        {
+            type: 'list',
+            name: 'role',
+            message: 'What role would you like to add?', 
+            choices: ['Intern', 'Engineer', 'Done'],
+            // validate ,
+        },
+        {
+            name: 'name',
+            message: 'Please enter employee full name.', 
+            // validate: ,
+        },
+        {
+            name: 'id',
+            message: 'Please enter employee id.', 
+            // validate ,
+        },
+        {
+            name: 'email',
+            message: 'Please enter employee email address.', 
+            // validate ,
+        },
+        {
+            name: 'school',
+            message: 'Please enter employee school name.', 
+            // validate ,
+        },
+        {
+            name: 'github',
+            message: 'Please enter employee github username.', 
+            // validate ,
+        },
+        // {
+        //     name: ,
+        //     message , 
+        //     validate ,
+        // },
+    ])
+    .then((response) => {
+        console.log(response);
+    
+
+    });
+    };
+
+    managerCard();
+    // employeeCard();
+
+
+
+
+
+
+
+
+
+// var index = `<!DOCTYPE html>
+// //         <html lang="en">
+        
+// //         <head>
+// //             <meta charset="UTF-8">
+// //             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+// //             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+// //             <title>Document</title>
+// //             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+// //         </head>
+        
+// //         <body>
+// //             <header class="column has-background-primary p-4 has-text-centered">My Team</header>
+// //             <main class="container">
+// //                 <div class="card">
+// //                     <div class="card-header">
+// //                     <div class="card-header-title is-center ">${response.name}</div>
+// //                     <div class="card-header-title is-center">${response.role}</div>
+// //                 </div>
+// //                     <div class="card-content" id="id"></div>
+// //                     <div class="card-content" id="email"></div>
+// //                     <div class="card-content" id="office-number"></div>
+// //                     <div class="card-content"></div>
+// //                     </div>
+// //                 </div>
+// //                 <div class="card">
+// //                     <div class="card-header">
+// //                     <div class="card-header-title is-center "></div>
+// //                     <div class="card-header-title is-center"></div>
+// //                 </div>
+// //                     <div class="card-content" id="id"></div>
+// //                     <div class="card-content" id="email"></div>
+// //                     <div class="card-content" id="github"></div>
+// //                     <div class="card-content"></div>
+// //                     </div>
+// //                 </div>
+// //                 <div class="card">
+// //                     <div class="card-header">
+// //                     <div class="card-header-title is-center "></div>
+// //                     <div class="card-header-title is-center"></div>
+// //                 </div>
+// //                     <div class="card-content" id="id"></div>
+// //                     <div class="card-content" id="email"></div>
+// //                     <div class="card-content" id="school"></div>
+// //                     <div class="card-content"></div>
+// //                     </div>
+// //                 </div>
+// //             </main>
+// //         </body>
+        
+// //         </html>`
+    
+// //         // fs.writeFile('index.html', index, (err) => {
+// //         //     if (err) throw err;
+// //         //     console.log(index)
+// //         // })
+    
 
 
 
@@ -107,8 +178,7 @@ inquirer
 
 
 
-
-// const path = require("path");
+// // // const path = require("path");
 
 // const dist_dir = path.resolve(__dirname, "dist");
 // const dist_path = path.join(dist_dir, "team.html");
