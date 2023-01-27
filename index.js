@@ -4,6 +4,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Employee = require("./lib/Employee");
+const template = require("./src/page-template");
 
 
 // const intern = new Intern();
@@ -42,9 +43,9 @@ inquirer
     },
 ])
 .then((response) => {
-    allEmployees.push(response);
+    allEmployees.push(new Manager (response.name, response.id, response.email, response.office));
 
-    // const manager = new Manager(response.name, response.id, response.email, response.office);
+    // const manager = new Manager (response.name, response.id, response.email, response.office);
     // console.log(manager);
     employeeCard();
 });
@@ -90,8 +91,14 @@ function employeeCard(){
 
     ])
     .then((response) => {
+        if(response.role === "Engineer") {
+            allEmployees.push(new Engineer(response.role, response.name, response.id, response.email, response.office));
 
-            allEmployees.push(response);
+        }
+        if(response.role === "Intern") {
+            allEmployees.push(new Intern(response.role, response.name, response.id, response.email, response.office));
+
+        }
 
         if(response.add === true) {
             employeeCard();
@@ -99,13 +106,15 @@ function employeeCard(){
 
         myTeam();
 
-        // const engineer = new Engineer(response.role, response.name, response.id, response.email, response.office);
-        // const intern = new Intern(response.role, response.name, response.id, response.email, response.office);
 
         console.log(allEmployees);
 
     });
     };
+
+    var cards = allEmployees.reduce((acc, employee) => { 
+        return acc.concat(generateTeammate);
+    });
 
     managerCard();
 
@@ -126,38 +135,7 @@ var index = `<!DOCTYPE html>
         <body>
             <header class="column has-background-primary p-4 has-text-centered">My Team</header>
             <main class="container">
-                <div class="card">
-                    <div class="card-header">
-                    <div class="card-header-title is-center ">${allEmployees[0].name}</div>
-                    <div class="card-header-title is-center">${allEmployees[0].role}</div>
-                </div>
-                    <div class="card-content" id="id">${allEmployees[0].id}</div>
-                    <div class="card-content" id="email">${allEmployees[0].email}</div>
-                    <div class="card-content" id="office-number">${allEmployees[0].office}</div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                    <div class="card-header-title is-center "></div>
-                    <div class="card-header-title is-center"></div>
-                </div>
-                    <div class="card-content" id="id"></div>
-                    <div class="card-content" id="email"></div>
-                    <div class="card-content" id="github"></div>
-                    <div class="card-content"></div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                    <div class="card-header-title is-center "></div>
-                    <div class="card-header-title is-center"></div>
-                </div>
-                    <div class="card-content" id="id"></div>
-                    <div class="card-content" id="email"></div>
-                    <div class="card-content" id="school"></div>
-                    <div class="card-content"></div>
-                    </div>
-                </div>
+               ${}
             </main>
         </body>
         
